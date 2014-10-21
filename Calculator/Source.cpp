@@ -1,39 +1,35 @@
 /*
 To Do:
-Implement stacks to allow for multiple expressions
-Implement scientific calculator functions
-Implement a gui through qt framework
+Implement shunting-yard algorithm 
 */
 #include <iostream>
+#include <string>
+#include <stack>
+#include <queue>
 
 using std::cin;
 using std::cout;
 using std::endl;
+using std::stack;
+using std::queue;
 
 int main()
 {
 	cout << "Please enter an expression: " << endl;
-	double number1;
-	double number2;
+	int number1;
 	char operation;
+	int number2;
 	cin >> number1 >> operation >> number2;
-
-	switch (operation)
-	{
-	case '+':
-		cout << number1 + number2 << endl;
-		break;
-	case '-':
-		cout << number1 - number2 << endl;
-		break;
-	case '*':
-		cout << number1 * number2 << endl;
-		break;
-	case '/':
-		cout << number1 / number2 << endl;
-		break;
-	default:
-		break;
-	}
+	queue<int> number_queue;
+	number_queue.push(number1);
+	number_queue.push(number2);
+	stack<char> operator_stack;
+	operator_stack.push(operation);
+	cout << number_queue.front() << " ";
+	number_queue.pop();
+	cout << number_queue.front() << " ";
+	number_queue.pop();
+	cout << operator_stack.top() << endl;
+	operator_stack.pop();
 	return 0;
 }
