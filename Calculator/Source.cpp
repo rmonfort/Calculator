@@ -1,35 +1,37 @@
-/*
-To Do:
-Implement shunting-yard algorithm 
-*/
 #include <iostream>
 #include <string>
-#include <stack>
-#include <queue>
 
 using std::cin;
 using std::cout;
 using std::endl;
-using std::stack;
-using std::queue;
 
+double caculate_expression(const double& number1, const double& number2, const char& operation)
+{
+	switch (operation)
+	{
+	case '+':
+		return number1 + number2;
+		break;
+	case '-':
+		return number1 - number2;
+		break;
+	case '*':
+		return number1 * number2;
+		break;
+	case '/':
+		return number1 / number2;
+		break;
+	default:
+		break;
+	}
+}
 int main()
 {
-	cout << "Please enter an expression: " << endl;
-	int number1;
+	cout << "Please enter an simple expression (i.e. 1+2, 1-2, 1*3, or 1/4): " << endl;
+	double number1;
 	char operation;
-	int number2;
+	double number2;
 	cin >> number1 >> operation >> number2;
-	queue<int> number_queue;
-	number_queue.push(number1);
-	number_queue.push(number2);
-	stack<char> operator_stack;
-	operator_stack.push(operation);
-	cout << number_queue.front() << " ";
-	number_queue.pop();
-	cout << number_queue.front() << " ";
-	number_queue.pop();
-	cout << operator_stack.top() << endl;
-	operator_stack.pop();
+	cout << caculate_expression(number1, number2, operation) << endl;
 	return 0;
 }
